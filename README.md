@@ -1,6 +1,6 @@
 # JSearch
  
-_문장 색인 및 토큰 역색인을 활용한 텍스트 검색 툴_
+_문장 색인 및 토큰 역색인을 활용한 특정 텍스트 포함 데이터셋 구성 툴_
 
 _토크나이저 : monologg/koelectra-base-v3-discriminator_
 

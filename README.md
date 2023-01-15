@@ -16,6 +16,15 @@ python JS_map_build --data_dir {dir}
 ```
 Result => _두 개의 맵을 생성합니다._
 
+_텍스트_
+```
+인덱스를 key로, 문장을 value로 저장
+[
+    소나무가 있다,
+    소나무가 없다
+]
+```
+
 _문장 맵_
 ```
 인덱스를 key로, 문장을 value로 저장

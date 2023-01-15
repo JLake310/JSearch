@@ -2,6 +2,8 @@
  
 _문장 색인 및 토큰 역색인을 활용한 텍스트 검색 툴_
 
+_토크나이저 : monologg/koelectra-base-v3-discriminator_
+
 ### 0. Requirements
 ```
 transformers==4.8.2

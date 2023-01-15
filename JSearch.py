@@ -4,14 +4,14 @@ import argparse
 import time
 
 def load_map(type):
-    f = open('{}s_dict.json'.format(type), 'r', encoding='utf8')
+    f = open('./{}s_dict.json'.format(type), 'r', encoding='utf8')
     dict_from_json = json.load(f)
     return dict_from_json
 
 if __name__=='__main__':
     start = time.time()
     parser = argparse.ArgumentParser()
-    parser.add_argument('--query', type=str, default='만남')
+    parser.add_argument('--query', type=str, default='사랑')
     args = parser.parse_args()
 
     tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-base-v3-discriminator")

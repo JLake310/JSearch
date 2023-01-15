@@ -9,7 +9,7 @@ _토크나이저 : monologg/koelectra-base-v3-discriminator_
 transformers==4.8.2
 ```
 
-### 1. Map Building 
+### 1. Mapping 
 Usage
 ```
 python JS_map_build --data_dir {dir}
@@ -47,7 +47,7 @@ tokens_dict = {
 }
 ```
 
-### 2. Searching
+### 2. Querying
 Usage
 ```
 python JSearch.py --query {keywords} # keywords ex) "사랑" "사랑 행복"

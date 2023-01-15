@@ -77,5 +77,3 @@ if __name__=='__main__':
 
     end = time.time()
     print(f"{end - start:.5f} sec")
-
-    # 총 실행 서버 기준 1분 40초 가량 소요

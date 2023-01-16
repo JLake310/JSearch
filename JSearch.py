@@ -15,6 +15,12 @@ if __name__=='__main__':
     parser.add_argument('--option', type=str, default='and')
     args = parser.parse_args()
 
+    input_word = args.query
+    option = args.option
+    if option != 'and' and option != 'or':
+        print("option has to be 'and' or 'or'")
+        exit(0)
+
     tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-base-v3-discriminator")
 
     # 맵 불러오기
@@ -22,12 +28,6 @@ if __name__=='__main__':
     tokens_dict_from_json = load_map("token")
 
     # 쿼리 토크나이징
-    input_word = args.query
-    option = args.option
-    if option != 'and' and option != 'or':
-        print("option has to be 'and' or 'or'")
-        exit()
-
     word_to_token = tokenizer.tokenize(input_word)
     token_to_ids = tokenizer.convert_tokens_to_ids(word_to_token)
 

@@ -12,6 +12,7 @@ if __name__=='__main__':
     start = time.time()
     parser = argparse.ArgumentParser()
     parser.add_argument('--query', type=str, default='사랑')
+    parser.add_argument('--option', type=str, default='and')
     args = parser.parse_args()
 
     tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-base-v3-discriminator")
@@ -22,6 +23,11 @@ if __name__=='__main__':
 
     # 쿼리 토크나이징
     input_word = args.query
+    option = args.option
+    if option != 'and' and option != 'or':
+        print("option has to be 'and' or 'or'")
+        exit()
+
     word_to_token = tokenizer.tokenize(input_word)
     token_to_ids = tokenizer.convert_tokens_to_ids(word_to_token)
 
@@ -29,7 +35,11 @@ if __name__=='__main__':
     sentences_ids = ()
     for token_to_id in token_to_ids:
         if len(sentences_ids) == 0: sentences_ids = set(tokens_dict_from_json[str(token_to_id)])
-        else : sentences_ids &= set(tokens_dict_from_json[str(token_to_id)])
+        else :
+            if option == 'and':
+                sentences_ids &= set(tokens_dict_from_json[str(token_to_id)])
+            else:
+                sentences_ids |= set(tokens_dict_from_json[str(token_to_id)])
     
     # 위에서 추출한 id로 문장 맵 순회: 복잡도 O(1) * (id set 길이)
     result_sentences = []
@@ -37,7 +47,7 @@ if __name__=='__main__':
         result_sentences.append(sentences_dict_from_json[str(_id)])
     result_set = '. '.join(result_sentences)
 
-    with open('./dataset/{}.txt'.format(input_word), 'w', encoding='UTF-8') as f:
+    with open('./dataset/{}_{}.txt'.format(input_word, option), 'w', encoding='UTF-8') as f:
         f.write(result_set)
 
     # 최대 O(n), n은 전체 문장 개수로 데이터셋 추출 가능

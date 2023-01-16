@@ -9,12 +9,20 @@ _토크나이저 : monologg/koelectra-base-v3-discriminator_
 transformers==4.8.2
 ```
 
-### 1. Map Building 
+### 1. Mapping 
 Usage
 ```
 python JS_map_build --data_dir {dir}
 ```
 Result => _두 개의 맵을 생성합니다._
+
+_텍스트_
+```
+[
+    소나무가 있다,
+    소나무가 없다
+]
+```
 
 _문장 맵_
 ```
@@ -28,8 +36,8 @@ sentences_dict = {
 _토큰 맵_
 ```
 토큰 번호를 key로, 그 토큰이 포함된 문장 인덱스 리스트를 value로 저장
-소나무가 있다는 토큰으로 [13876, 4070, 3249, 4176],
-소나무가 없다는 토큰으로 [13876, 4070, 3123, 4176] 이므로
+"소나무가 있다"는 토큰 인덱스로 [13876, 4070, 3249, 4176],
+"소나무가 없다"는 [13876, 4070, 3123, 4176] 이므로
 tokens_dict = {
     13876: [0, 1],
     4070: [0, 1],
@@ -39,7 +47,7 @@ tokens_dict = {
 }
 ```
 
-### 2. Searching
+### 2. Querying
 Usage
 ```
 python JSearch.py --query {keywords} # keywords ex) "사랑" "사랑 행복"

@@ -24,9 +24,9 @@ _텍스트_
 ]
 ```
 
-_문장 맵_
+_텍스트 맵_
 ```
-인덱스를 key로, 문장을 value로 저장
+인덱스를 key로, 텍스트를 value로 저장
 sentences_dict = {
     0 : "소나무가 있다",
     1 : "소나무가 없다"
@@ -35,7 +35,7 @@ sentences_dict = {
 
 _토큰 맵_
 ```
-토큰 번호를 key로, 그 토큰이 포함된 문장 인덱스 리스트를 value로 저장
+토큰 번호를 key로, 그 토큰이 포함된 텍스트 인덱스 리스트를 value로 저장
 "소나무가 있다"는 토큰 인덱스로 [13876, 4070, 3249, 4176],
 "소나무가 없다"는 [13876, 4070, 3123, 4176] 이므로
 tokens_dict = {
@@ -48,10 +48,17 @@ tokens_dict = {
 ```
 
 ### 2. Querying
+
+> 2023.01.19</br>
+> and/or 옵션이 추가되었습니다.</br>
+> option</br>
+> and : 모든 query 토큰들이 포함된 텍스트로 구성된 데이터셋을 반환하며,</br>
+> or : 텍스트에 토큰들 중 하나라도 포함되어 있다면 데이터셋에 포함됩니다.
+
 Usage
 ```
-python JSearch.py --query {keywords} # keywords ex) "사랑" "사랑 행복"
+python JSearch.py --query {keywords} --option {and/or} # keywords ex) "사랑" "사랑 행복"
 ```
-Result => {dataset/{keywords}.txt}에 키워드들이 포함된 문장을 저장합니다.
+Result => {dataset/{keywords}_{option}.txt}에 추출된 데이터셋이 저장됩니다.
 
 980만개 가량의 문장으로 실행했을 때, 5초 가량 소요됩니다.
